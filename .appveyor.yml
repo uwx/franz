@@ -9,6 +9,13 @@ branches:
   only:
     - master
 
+cache:
+  - node_modules -> package.json
+  - '%LOCALAPPDATA%/Yarn' -> package.json
+  - '%APPDATA%\npm-cache' -> package.json
+  - yarn.lock -> package.json
+  - package-lock.json -> package.json
+
 install:
   - ps: Install-Product node 8
   - yarn cache clean
