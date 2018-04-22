@@ -12,13 +12,12 @@ branches:
 install:
   - ps: Install-Product node 8
   - yarn cache clean
-  - yarn install
+  - _hansen_install_electron
 
 before_build:
   - yarn lint
 
 build_script:
-  - _hansen_install_electron
   - yarn build
 
 notifications:
