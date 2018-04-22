@@ -9,15 +9,9 @@ branches:
   only:
     - master
 
-cache:
-  - node_modules -> package.json
-  - '%LOCALAPPDATA%/Yarn -> package.json'
-  - '%APPDATA%\npm-cache -> package.json'
-  - yarn.lock -> package.json
-  - package-lock.json -> package.json
-
 install:
   - ps: Install-Product node 8
+  - npm cache clean
   - npm install -g gulp 
   - npm link gulp
   - _hansen_install_electron
