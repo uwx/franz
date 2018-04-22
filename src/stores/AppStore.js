@@ -2,7 +2,7 @@ import { remote, ipcRenderer, shell } from 'electron';
 import { action, computed, observable } from 'mobx';
 import moment from 'moment';
 import key from 'keymaster';
-import { getDoNotDisturb } from '@meetfranz/electron-notification-state';
+import { getDoNotDisturb } from '../_hansen/polyfill';
 import AutoLaunch from 'auto-launch';
 import prettyBytes from 'pretty-bytes';
 
