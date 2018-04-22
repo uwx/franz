@@ -10,6 +10,12 @@ import './notifications';
 
 const debug = require('debug')('Plugin');
 
+if (window.location.hash && window.location.hash.startsWith('#preload:')) {
+  console.log('hash in preload', window.location.hash);
+  require(window.location.hash.slice('#preload:'.length).replace('\\\\', '\\') + path.sep + 'fastpreload.js');
+  window.location.hash = '';
+}
+
 ipcRenderer.on('initializeRecipe', (e, data) => {
   const modulePath = path.join(data.recipe.path, 'webview.js');
   // Delete module from cache

@@ -50,6 +50,7 @@ export default class Recipe {
     this.path = data.path;
 
     this.serviceURL = data.config.serviceURL || this.serviceURL;
+    if (data.config.hansenFastPreload) this.serviceURL += '#preload:' + this.path;
 
     this.hasDirectMessages = data.config.hasDirectMessages || this.hasDirectMessages;
     this.hasIndirectMessages = data.config.hasIndirectMessages || this.hasIndirectMessages;
