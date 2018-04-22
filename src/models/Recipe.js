@@ -21,6 +21,8 @@ export default class Recipe {
   urlInputSuffix = '';
 
   message = '';
+  
+  hansenWebviewOptions = {};
 
   constructor(data) {
     if (!data) {
@@ -61,6 +63,7 @@ export default class Recipe {
     this.urlInputSuffix = data.config.urlInputSuffix || this.urlInputSuffix;
 
     this.message = data.config.message || this.message;
+    this.hansenWebviewOptions = data.config.hansenWebviewOptions || this.hansenWebviewOptions;
   }
 
   get author() {

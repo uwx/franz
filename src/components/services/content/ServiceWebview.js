@@ -107,6 +107,7 @@ export default class ServiceWebview extends Component {
             useragent={service.userAgent}
             muted={isAppMuted || service.isMuted}
             allowpopups
+            {...service.recipe.hansenWebviewOptions}
           />
         )}
         {statusBar}
