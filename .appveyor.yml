@@ -11,7 +11,7 @@ branches:
 
 install:
   - ps: Install-Product node 8
-  - cmd: set PATH=node_modules\.bin;%PATH%
+  - cmd: set PATH=node_modules\.bin;%cd%\node_modules\.bin;%PATH%
   - npm cache verify
   - npm install -g gulp 
   - npm link gulp
