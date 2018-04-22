@@ -18,7 +18,8 @@ cache:
 
 install:
   - ps: Install-Product node 8
-  - yarn cache clean
+  - yarn install
+  - npm install
   - _hansen_install_electron
   - >-
       yarn global add babel-eslint babel-plugin-transform-class-properties babel-plugin-transform-decorators-legacy
