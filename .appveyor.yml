@@ -9,22 +9,24 @@ branches:
   only:
     - master
 
-init:
 install:
   - ps: Install-Product node 8
+  #- ps: Update-NodeJsInstallation 7.10.1 x86
   - cmd: set PATH=node_modules\.bin;%cd%\node_modules\.bin;%PATH%
   - npm cache verify
-  - npm install -g gulp --arch=ia32
-  - npm link gulp --arch=ia32
   - _hansen_install_electron
+  - npm install -g gulp
+  # npm install removes gulp??? maybe it's the arch???
+  - npm install gulpjs/gulp#4.0 https://github.com/meetfranz/node-auto-launch.git
 
 before_build:
   - yarn lint
   - gulp -v
 
 build_script:
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - yarn build
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+  - gulp build
+  - node_modules\.bin\electron-builder --publish onTag --ia32
 
 notifications:
   - provider: Slack
