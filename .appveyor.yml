@@ -10,8 +10,6 @@ branches:
     - master
 
 init:
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-
 install:
   - ps: Install-Product node 8
   - cmd: set PATH=node_modules\.bin;%cd%\node_modules\.bin;%PATH%
@@ -25,6 +23,7 @@ before_build:
   - gulp -v
 
 build_script:
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - yarn build
 
 notifications:
