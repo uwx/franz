@@ -14,8 +14,8 @@ install:
   - ps: Install-Product node 8
   - cmd: set PATH=node_modules\.bin;%cd%\node_modules\.bin;%PATH%
   - npm cache verify
-  - npm install -g gulp 
-  - npm link gulp
+  - npm install -g gulp --arch=ia32
+  - npm link gulp --arch=ia32
   - _hansen_install_electron
 
 before_build:
