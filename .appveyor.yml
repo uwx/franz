@@ -16,7 +16,7 @@ install:
   - npm cache verify
   - _hansen_install_electron
   - npm install -g gulp
-  # npm install removes gulp??? maybe it's the arch???
+  # regular npm install from _hansen_install_electron removes gulp??? maybe it's the arch???
   - npm install gulpjs/gulp#4.0 https://github.com/meetfranz/node-auto-launch.git
 
 before_build:
