@@ -1,0 +1,1 @@
+set DEBUG=* && yarn start:live
