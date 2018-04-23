@@ -26,6 +26,7 @@ before_build:
 build_script:
 #  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - gulp build
+  # i don't think ia32 does anything here, only in electron-builder.yml
   - node_modules\.bin\electron-builder --publish onTag --ia32
 
 notifications:
