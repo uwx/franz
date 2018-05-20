@@ -536,6 +536,20 @@ export default class FranzMenu {
         }
       },
     }, {
+      label: 'Reload Scriptycord',
+      click: () => {
+        if (this.stores.user.isLoggedIn
+          && this.stores.services.enabled.length > 0) {
+          require('electron').remote.ipcMain.on('HANSEN_WEVIEW_TIDY_FINISHED', () => {
+            console.log('got HANSEN_WEVIEW_TIDY_FINISHED');
+            this.actions.service.reloadActive();
+          });
+          require('electron').ipcRenderer.send('HANSEN_WEVIEW_START_TIDY');
+        } else {
+          alert('select discord recipe first!');
+        }
+      },
+    }, {
       label: intl.formatMessage(menuItems.reloadFranz),
       accelerator: `${cmdKey}+Shift+R`,
       click: () => {
