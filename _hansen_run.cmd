@@ -1,1 +1,1 @@
-set DEBUG=* && yarn start:live
+set DEBUG=* && yarn start:live && set DEBUG=
