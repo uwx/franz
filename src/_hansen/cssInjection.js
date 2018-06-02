@@ -91,8 +91,8 @@
       });
     }
 
-    for (const file of await readdir('$$$ROOT$$$')) {
-      const cssPath = '$$$ROOT$$$' + '/' + file;
+    for (const file of await readdir(window.__hansenCssRoot)) {
+      const cssPath = window.__hansenCssRoot + '/' + file;
       const parsed = path.parse(cssPath);
       if (parsed.ext !== '.css' && parsed.ext !== '.less') continue;
       await applyAndWatchCSS(cssPath, parsed.name, parsed.ext.slice(1), parsed.ext === '.less');

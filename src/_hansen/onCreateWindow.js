@@ -26,6 +26,7 @@ module.exports = mainWindow => {
 
   mainWindow.webContents.on('dom-ready', async () => {
     const cssInject = await readFile(path.join(__dirname, 'cssInjection.js'), 'utf8');
-    mainWindow.webContents.executeJavaScript(cssInject.replace(/'\$\$\$ROOT\$\$\$'/g, JSON.stringify(path.resolve(process.cwd(), '_hansen_css'))));
+    mainWindow.webContents.executeJavaScript(
+      'window.__hansenCssRoot = ' + JSON.stringify(path.resolve(process.cwd(), '_hansen_css')) + ';' + cssInject);
   });
 };
