@@ -45,6 +45,7 @@
     "jshashes": "^1.0.6",
     "jsonwebtoken": "^7.4.1",
     "keymaster": "^1.6.2",
+    "less": "^3.0.4",
     "lodash": "^4.17.4",
     "mdi": "^1.9.33",
     "minimist": "^1.2.0",
