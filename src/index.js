@@ -165,6 +165,9 @@ const createWindow = () => {
     e.preventDefault();
     shell.openExternal(url);
   });
+
+  /* eslint global-require: "off" */
+  require('./_hansen/onCreateWindow')(mainWindow);
 };
 
 // This method will be called when Electron has finished
