@@ -540,11 +540,11 @@ export default class FranzMenu {
       click: () => {
         if (this.stores.user.isLoggedIn
           && this.stores.services.enabled.length > 0) {
-          require('electron').remote.ipcMain.on('HANSEN_WEVIEW_TIDY_FINISHED', () => {
-            console.log('got HANSEN_WEVIEW_TIDY_FINISHED');
+          require('electron').remote.ipcMain.once('HANSEN_WEBVIEW_TIDY_FINISHED', () => {
+            console.log('got HANSEN_WEBVIEW_TIDY_FINISHED');
             this.actions.service.reloadActive();
           });
-          require('electron').ipcRenderer.send('HANSEN_WEVIEW_START_TIDY');
+          require('electron').ipcRenderer.send('HANSEN_WEBVIEW_START_TIDY');
         } else {
           alert('select discord recipe first!');
         }
