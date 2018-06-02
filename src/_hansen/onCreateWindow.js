@@ -24,8 +24,10 @@ module.exports = mainWindow => {
     });
   });
 
+  const cssInjectionPath = global.__hansen_do_not_directly_reference_cssInjectionPath = path.join(__dirname, 'cssInjection.js');
+  
   mainWindow.webContents.on('dom-ready', async () => {
-    const cssInject = await readFile(path.join(__dirname, 'cssInjection.js'), 'utf8');
+    const cssInject = await readFile(cssInjectionPath, 'utf8');
     mainWindow.webContents.executeJavaScript(
       'window.__hansenCssRoot = ' + JSON.stringify(path.resolve(process.cwd(), '_hansen_css')) + ';' + cssInject);
   });
