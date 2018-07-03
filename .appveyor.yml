@@ -29,11 +29,6 @@ build_script:
   # i don't think ia32 does anything here, only in electron-builder.yml
   - node_modules\.bin\electron-builder --publish onTag --ia32
 
-notifications:
-  - provider: Slack
-    incoming_webhook:
-      secure: /tQzfO0uCSjCMZF2eqIdIGAxeA/Zyn2eKDJKfcnvwV4qHnT8wXhKj6rS4Mm5MTkjmIMt4JBPdQIbyviBwfXvLt0cGFParmWyOuStdSRGVzEN6mZF8Hg+4QuWXMJ25vBxipZTnWUvtdwIPyE6JNStSCR/llRE70EmtOJCmA/T+HqzIpLXCD8FiP/Aq5rI8GCM
-
 artifacts:
   - path: out\*.exe
   - path: out\*.yml
@@ -65,3 +60,10 @@ deploy:
       branch: master                 # release from master branch only
       appveyor_repo_tag: false       # no deploy on tag push
       
+notifications:
+  - provider: Slack
+    on_build_success: true
+    on_build_failure: true
+    incoming_webhook:
+      secure: +5y63VhkKwOZVK264xwgH8gp7vI2cJivXvseQeSoYYNyH3wjOtid8Qz+gyNOjCGpI/xqxxJNwqFrL75ZPHYOYEKs9WhBWznTsFpJUAs5hxn1kcczMv6WYuwUzXJNEdqX6m47PnS7xrzUZJIRWNQCHRJCtN5VX+hXfVV6BT+tKQdRDeRr/LANhRLr2pAbIOGP
+
