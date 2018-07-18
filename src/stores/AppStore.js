@@ -3,7 +3,7 @@ import { action, computed, observable } from 'mobx';
 import moment from 'moment';
 import key from 'keymaster';
 import { getDoNotDisturb } from '../_hansen/polyfill';
-import AutoLaunch from 'auto-launch';
+import { AutoLaunch } from '../_hansen/polyfill';
 import prettyBytes from 'pretty-bytes';
 
 import Store from './lib/Store';
