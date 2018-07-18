@@ -21,8 +21,9 @@ export default class Recipe {
   urlInputSuffix = '';
 
   message = '';
-  
+
   hansenWebviewOptions = {};
+  hansenDisableCSP = false;
 
   constructor(data) {
     if (!data) {
@@ -50,7 +51,7 @@ export default class Recipe {
     this.path = data.path;
 
     this.serviceURL = data.config.serviceURL || this.serviceURL;
-    if (data.config.hansenFastPreload) this.serviceURL += '#preload:' + this.path;
+    if (data.config.hansenFastPreload) this.serviceURL += `#preload:${this.path}`;
 
     this.hasDirectMessages = data.config.hasDirectMessages || this.hasDirectMessages;
     this.hasIndirectMessages = data.config.hasIndirectMessages || this.hasIndirectMessages;
@@ -65,6 +66,7 @@ export default class Recipe {
 
     this.message = data.config.message || this.message;
     this.hansenWebviewOptions = data.config.hansenWebviewOptions || this.hansenWebviewOptions;
+    this.hansenDisableCSP = data.config.hansenDisableCSP || this.hansenDisableCSP;
   }
 
   get author() {

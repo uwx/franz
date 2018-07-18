@@ -414,13 +414,10 @@ export default class ServicesStore extends Store {
     service.resetMessageCount();
 
     service.webview.loadURL(service.url);
-
-    service.webview.getWebContents().session.webRequest.onHeadersReceived((details, callback) => {
-      const outHeaders = Object.assign({}, details.responseHeaders);
-      console.log('csp', details.url, delete outHeaders['content-security-policy']);
-      callback({responseHeaders: outHeaders});
-    });
-
+    
+    if (service.recipe.hansenDisableCSP) {
+      require('../_hansen/webviewCSPDisable').hijackCSP(service.webview.getWebContents());
+    }
   }
 
   @action _reloadActive() {

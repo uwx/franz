@@ -100,11 +100,9 @@ export default class ServiceWebview extends Component {
             preload="./webview/plugin.js"
             partition={`persist:service-${service.id}`}
             onDidAttach={() => {
-              this.webview.getWebContents().session.webRequest.onHeadersReceived((details, callback) => {
-                const outHeaders = Object.assign({}, details.responseHeaders);
-                console.log('csp', details.url, delete outHeaders['content-security-policy']);
-                callback({responseHeaders: outHeaders});
-              });
+              if (service.recipe.hansenDisableCSP) {
+                require('../../../_hansen/webviewCSPDisable').hijackCSP(this.webview.getWebContents());
+              }
 
               setWebviewReference({
                 serviceId: service.id,
