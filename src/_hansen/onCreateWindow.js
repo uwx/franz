@@ -4,9 +4,11 @@
 const less = require('less');
 const { ipcMain } = require('electron');
 
-const { promisify } = require('util');
+const promisify = require('./util.promisify.js');
+
 const path = require('path');
 const readFile = promisify(require('fs').readFile);
+
 
 less.logger.addListener({
   debug: msg => console.debug('[cssInjection][less][debug]', msg),

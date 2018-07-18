@@ -32,7 +32,7 @@
 
   hansenExecute(async () => {
     const path = require('path');
-    const { promisify } = require('util');
+    const promisify = require(__dirname + '/_hansen/util.promisify.js');
     const fs = require('fs');
     const readFile = promisify(fs.readFile);
     const readdir = promisify(fs.readdir);
