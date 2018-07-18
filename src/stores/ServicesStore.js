@@ -414,6 +414,13 @@ export default class ServicesStore extends Store {
     service.resetMessageCount();
 
     service.webview.loadURL(service.url);
+
+    service.webview.getWebContents().session.webRequest.onHeadersReceived((details, callback) => {
+      const outHeaders = Object.assign({}, details.responseHeaders);
+      console.log('csp', details.url, delete outHeaders['content-security-policy']);
+      callback({responseHeaders: outHeaders});
+    });
+
   }
 
   @action _reloadActive() {

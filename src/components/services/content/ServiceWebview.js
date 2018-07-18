@@ -99,10 +99,18 @@ export default class ServiceWebview extends Component {
             src={service.url}
             preload="./webview/plugin.js"
             partition={`persist:service-${service.id}`}
-            onDidAttach={() => setWebviewReference({
-              serviceId: service.id,
-              webview: this.webview.view,
-            })}
+            onDidAttach={() => {
+              this.webview.getWebContents().session.webRequest.onHeadersReceived((details, callback) => {
+                const outHeaders = Object.assign({}, details.responseHeaders);
+                console.log('csp', details.url, delete outHeaders['content-security-policy']);
+                callback({responseHeaders: outHeaders});
+              });
+
+              setWebviewReference({
+                serviceId: service.id,
+                webview: this.webview.view,
+              });
+            }}
             onUpdateTargetUrl={this.updateTargetUrl}
             useragent={service.userAgent}
             muted={isAppMuted || service.isMuted}
